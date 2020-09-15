@@ -19,13 +19,13 @@ package leaderelection
 import (
 	"context"
 	"fmt"
+	"net/http"
 	"testing"
 	"time"
 
-	"net/http"
+	rl "kmodules.xyz/leaderelection/resourcelock"
 
 	"k8s.io/apimachinery/pkg/util/clock"
-	rl "k8s.io/client-go/tools/leaderelection/resourcelock"
 )
 
 type fakeLock struct {

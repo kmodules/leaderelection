@@ -58,13 +58,13 @@ import (
 	"fmt"
 	"time"
 
+	rl "kmodules.xyz/leaderelection/resourcelock"
+
 	"k8s.io/apimachinery/pkg/api/errors"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"k8s.io/apimachinery/pkg/util/clock"
 	"k8s.io/apimachinery/pkg/util/runtime"
 	"k8s.io/apimachinery/pkg/util/wait"
-	rl "k8s.io/client-go/tools/leaderelection/resourcelock"
-
 	"k8s.io/klog"
 )
 
@@ -190,7 +190,7 @@ type LeaderElector struct {
 	metrics leaderMetricsAdapter
 
 	// name is the name of the resource lock for debugging
-	name string
+	name string //nolint:structcheck,unused
 }
 
 // Run starts the leader election loop

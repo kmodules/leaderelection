@@ -24,6 +24,8 @@ import (
 	"testing"
 	"time"
 
+	rl "kmodules.xyz/leaderelection/resourcelock"
+
 	coordinationv1 "k8s.io/api/coordination/v1"
 	corev1 "k8s.io/api/core/v1"
 	"k8s.io/apimachinery/pkg/api/equality"
@@ -34,7 +36,6 @@ import (
 	"k8s.io/apimachinery/pkg/util/diff"
 	"k8s.io/client-go/kubernetes/fake"
 	fakeclient "k8s.io/client-go/testing"
-	rl "k8s.io/client-go/tools/leaderelection/resourcelock"
 	"k8s.io/client-go/tools/record"
 )
 
@@ -342,8 +343,8 @@ func TestLeaseSpecToLeaderElectionRecordRoundTrip(t *testing.T) {
 	oldSpec := coordinationv1.LeaseSpec{
 		HolderIdentity:       &holderIdentity,
 		LeaseDurationSeconds: &leaseDurationSeconds,
-		AcquireTime:          &metav1.MicroTime{time.Now()},
-		RenewTime:            &metav1.MicroTime{time.Now()},
+		AcquireTime:          &metav1.MicroTime{Time: time.Now()},
+		RenewTime:            &metav1.MicroTime{Time: time.Now()},
 		LeaseTransitions:     &leaseTransitions,
 	}
 
